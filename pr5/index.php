@@ -5,7 +5,7 @@
     $password   = "lL9bE1jS5v";               // Пароль
     
     try {
-        $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+        $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $password);
         // Устанавливаем режим обработки ошибок PDO
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         echo "Подключение успешно";
