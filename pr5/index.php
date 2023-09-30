@@ -5,6 +5,15 @@
     $password   = "lL9bE1jS5v";               // Пароль
     $connection = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $password);
     
+    try{
+        $connection->set Attribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXPCEPTION);
+            echo "База данных подключена";
+    }
+    catch (PDDException $e){
+        echo"Ошибка подключения:" . $e->getMessage();
+    }
+
+
     $result = $connection->query('SELECT * FROM `product`');
 
     if ($result){
@@ -15,23 +24,23 @@
     echo '<table border="1">';
 
     echo "<tr>";
-    for($i - 0; $i < $result->columnCount();$i++){
-        $column = $result->getColumnMeta($i);
-        echo "<th>{$column['name']}</th>";
+        for($i - 0; $i < $result->columnCount();$i++){
+            $column = $result->getColumnMeta($i);
+                echo "<th>{$column['name']}</th>";
     }
     echo"</tr>";
 
     while($row = $result->fetch( PDO::FETCH_ASSOC )){
         echo '<tr>';
-        foreach ($row as $key => $value) {
-        echo '<td>'.$value.'</td>';
+            foreach ($row as $key => $value) {
+                echo '<td>'.$value.'</td>';
     }
     echo '</tr>';
-}
-echo '<table>';
+    }
+    echo '<table>';
         }}
         else {
             echo 'Запрос выполнен с ошибкой';
         }
 
-    ?>
+?>
