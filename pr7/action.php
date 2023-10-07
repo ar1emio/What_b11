@@ -19,14 +19,25 @@
             if(empty($_POST['email'])) exit('Поле "Почта" не заполнено');
 
         $date = [$_POST['login'], $_POST['password'], $_POST['password1'], $_POST['email']];
-        $res = $con -> prepare ("INSERT INTO `users` (`login`, `password`, `password1`, `email`) VALUES (?,?,?,?);");
-        $res = $res -> execute ($date);
+        $res = $connection->prepare ("INSERT INTO `users` (`login`, `password`, `password1`, `email`) VALUES (?,?,?,?);");
+        $res = $res->execute ($date);
 
         if( $res ){
             exit('Регистрация прошла успешно');
         }
 
         exit('Ошибка регистрация');
+
+        $select = $connection->prepare("SELECT COUNT(`id`) as cnt FROM `users` WHERE `login` = ? or `email` = ?;");
+        $res = $select->execute( [$_POST['login'], $_POST['email']]);
+        $row = $select->fetch();
+        if(!$res && !isset($row['cnt'])){
+            exit('Ошибка регистрации...(3)');
+        }
+        
+        if( $row[0]>0){
+            exit( 'Пользователь уже существует');
+        }
     
 ?>
 
