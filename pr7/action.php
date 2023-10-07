@@ -18,15 +18,15 @@
             if($_POST['password'] !== $_POST['password1']) exit('Пароли не совпадают');
             if(empty($_POST['email'])) exit('Поле "Почта" не заполнено');
 
-        $date = [$_POST['login'], $_POST['password'], $_POST['password1'], $_POST['email']];
-        $res = $connection->prepare ("INSERT INTO `users` (`login`, `password`, `password1`, `email`) VALUES (?,?,?,?);");
+        $date = [$_POST['login'], $_POST['password'], $_POST['email']];
+        $res = $connection->prepare ("INSERT INTO `users` (`login`, `password`, `email`) VALUES (?,?,?);");
         $res = $res->execute ($date);
 
         if( $res ){
             exit('Регистрация прошла успешно');
         }
 
-        exit('Ошибка регистрация');
+        exit('Ошибка регистрации');
 
         $select = $connection->prepare("SELECT COUNT(`id`) as cnt FROM `users` WHERE `login` = ? or `email` = ?;");
         $res = $select->execute( [$_POST['login'], $_POST['email']]);
@@ -34,7 +34,7 @@
         if(!$res && !isset($row['cnt'])){
             exit('Ошибка регистрации...(3)');
         }
-        
+
         if( $row[0]>0){
             exit( 'Пользователь уже существует');
         }
