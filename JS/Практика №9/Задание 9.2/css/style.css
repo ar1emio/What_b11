@@ -1,0 +1,27 @@
+*{
+    background-color: #e2cdb8;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.header{
+    text-align: center;
+}
+
+.h2{
+    text-align: center;
+    color:rgb(79, 50, 33);
+}
+
+.h3{
+    color: rgb(88, 58, 22);  
+}
+
+.footer{
+    color: rgb(88, 119, 146);
+    text-align: center;
+}
+
+.foooter1{
+    color: rgb(88, 119, 146);
+    text-align: center;
+}
