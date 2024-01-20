@@ -26,22 +26,22 @@ function initCloseModal()  {
 
 function initImagesClick(images) {
   // Добавляем обработчик события клика на каждое изображение
-  for (var i = 0; i < images.length; i++) {
+  for (let i = 0; i < images.length; i++) {
       images[i].addEventListener('click', function(event) {
   
-          var image = event.target.src;
+          const image = event.target.src;
   
-          var modal = document.querySelector('.modal-gallery');
+          const modal = document.querySelector('.modal-gallery');
           if(modal !== null) {
               modal.querySelector('img').src = image;
   
               modal.classList.add('is-active');
               document.querySelector('html').classList.add('is-clipped');
   
-              var image = event.target;
-              if(image.getAttribute('alt')) {
-                  modal.querySelector('.image-subtitle').textContent = image.getAttribute('alt');
-                  modal.querySelector('img').setAttribute('alt', image.getAttribute('alt'));
+              const img = event.target;
+              if(img.getAttribute('alt')) {
+                  modal.querySelector('.image-subtitle').textContent = img.getAttribute('alt');
+                  modal.querySelector('img').setAttribute('alt', img.getAttribute('alt'));
                   modal.querySelector('.image-subtitle').classList.remove('is-hidden');
               } else {
                   modal.querySelector('.image-subtitle').classList.add('is-hidden');
@@ -57,12 +57,12 @@ function addNewBlocks(images) {
   // Проверяем, осталось ли до конца страницы менее 15%
   if ((document.documentElement.scrollTop + document.documentElement.clientHeight) / document.documentElement.scrollHeight * 100 > 85) {
       // Добавляем новые блоки в конец страницы
-      for (var i = 0; i < 15; i++) {
-          var columns = document.querySelector('.tile-content .columns');
+      for (let i = 0; i < 15; i++) {
+          const columns = document.querySelector('.tile-content .columns');
           columns.append(document.querySelector('#tile-image').content.cloneNode(true));
   
-          var addedBlock = columns.querySelector('div:last-child');
-          var templateImage = images[Math.floor(Math.random()*images.length)];
+          let addedBlock = columns.querySelector('div:last-child');
+          let templateImage = images[Math.floor(Math.random()*images.length)];
           addedBlock.querySelector('img').src = templateImage.src;
           addedBlock.querySelector('img').setAttribute('alt', templateImage.getAttribute('alt'));
   
